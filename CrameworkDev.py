@@ -23,9 +23,6 @@ def exitter():
     raw_input("Press Enter to exit")
     quit()
 
-def modes():
-    print("1) Encoding \n 2) Decoding")
-
 def WritingToFile(string, file, mode):
     try:
         file = open(file, mode)
@@ -56,42 +53,48 @@ selection = raw_input("Which tool would you like to use?: ")
 if selection == "1":
     print("")
     print(Fore.YELLOW + Style.BRIGHT + "MODE SELECTION")
-    modes()
+    print("1) Encoding")
+    print("2) Decoding")
     base64mode = raw_input("Which mode would you like to use?: ")
     if base64mode == "1":
-        print("\n" + Fore.GREEN)
+        print("")
+        print(Fore.GREEN)
         encoded = base64.b64encode(raw_input("Text to be encoded: "))
         print("")
         WritingToFile(encoded, "output.txt", "w")
 
-    elif base64mode == "2":
-        print("\n" + Fore.GREEN)
+    if base64mode == "2":
+        print("")
+        print(Fore.GREEN)
         decoded = base64.b64decode(raw_input("String to decode: "))
         WritingToFile(decoded, "output.txt", "w")
     else:
         Codebreaker()
 
-elif selection == "2":
+if selection == "2":
     print("")
     print(Fore.YELLOW + Style.BRIGHT + "MODE SELECTION")
-    modes()
+    print("1) Encoding")
+    print("2) Decoding")
     hexmode = raw_input("Which mode would you like to use?: ")
-    print(Fore.GREEN)
-    
+
     if hexmode == "1":
         encodedhex = binascii.hexlify(raw_input("String to encode: "))
-
+        print(Fore.GREEN)
         WritingToFile(encodedhex, "output.txt", "w")
 
-    elif hexmode == "2":
+    if hexmode == "2":
         decodedhex = binascii.unhexlify(raw_input("String to decode: "))
+        print(Fore.GREEN)
         WritingToFile(decodedhex, "output.txt", "w")
     else:
         Codebreaker()
 
-elif selection == "3":
-    print("\n" + Fore.YELLOW + Style.BRIGHT + "MODE SELECTION")
-    modes()
+if selection == "3":
+    print("")
+    print(Fore.YELLOW + Style.BRIGHT + "MODE SELECTION")
+    print("1) Encoding")
+    print("2) Decoding")
     pizzacmode = raw_input("Which mode would you like to use?: ")
 
     if pizzacmode == "1":
@@ -100,6 +103,8 @@ elif selection == "3":
         print "Encrypted text: " + data['encrypted']
         WritingToFile("String: " + data['encrypted'] + "\n " + "Key: " + data['key'], "output.txt", "w")
         exitter()
-        
+
+
+
 else:
     Codebreaker()
